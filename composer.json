@@ -1,0 +1,22 @@
+{
+	"name": "atk14/ip-matcher",
+	"type": "library",
+	"description": "Small class for checking ip addresses",
+	"keywords": ["ip", "mask", "subnet", "check", "compare"],
+	"homepage": "https://github.com/atk14/IpMatcher",
+	"license": ["MIT"],
+	"authors": [
+	{
+		"name": "Michal Vojan",
+		"homepage": "https://github.com/mysutka"
+	}
+	],
+		"require": {
+			"php": ">=5.0.0",
+		},
+		"require-dev": {
+		},
+		"autoload": {
+			"classmap": ["src"]
+		}
+}
