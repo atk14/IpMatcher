@@ -120,7 +120,7 @@ class IP {
 	}
 
 	// converts inet_pton output to string with bits
-	private function InetToBits($inet)
+	private static function InetToBits($inet)
 	{
 		$unpacked = unpack('A16', $inet);
 		$unpacked = str_split($unpacked[1]);
