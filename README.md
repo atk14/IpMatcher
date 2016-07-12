@@ -1,7 +1,9 @@
 IpMatcher
 =========
 
-Small class for checking ip addresses
+Small class for comparing IP addresses.
+One address can be compared with a single IP address or array of IPs or subnets.
+Works with both IPv4 and IPv6 formats.
 
 Basic usage
 -----------
