@@ -43,6 +43,17 @@ class tc_ip extends tc_base {
 				"cidr" => "0::0/64",
 				"expected_result" => true,
 			),
+			# IPv6 adress against v4 range
+			array(
+				"ip" => "::1",
+				"cidr" => "127.0.0.1",
+				"expected_result" => false,
+			),
+			array(
+				"ip" => "::1",
+				"cidr" => "192.168.2.0/24",
+				"expected_result" => false,
+			),
 		);
 
 		foreach($tested_subnets as $idx => $subnet) {
@@ -144,6 +155,23 @@ class tc_ip extends tc_base {
 			array(
 				"ip" => "195.200.100.128",
 				"cidr" => $mask_ar,
+				"expected_result" => false,
+			),
+			# Check Ipv4 address against v6 ranges
+			array(
+				"ip" => "195.200.100.128",
+#				"cidr" => "0::0/64",
+				"cidr" => "21DA:00D3:0000:2F3B::/64",
+				"expected_result" => false,
+			),
+			array(
+				"ip" => "195.200.100.128",
+				"cidr" => "0::0/64",
+				"expected_result" => false,
+			),
+			array(
+				"ip" => "195.200.100.128",
+				"cidr" => "::1",
 				"expected_result" => false,
 			),
 		);

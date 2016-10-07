@@ -64,6 +64,9 @@ class IP {
 		}
 		list($subnet,$mask) = preg_split('/\//', $cidr."/");
 
+		if (!filter_var($subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+			return false;
+		}
 		# default mask
 		$bits = 32;
 		if (preg_match("/^(\d{1,2})$/", $mask, $matches)) {
@@ -106,12 +109,15 @@ class IP {
 		$ip = inet_pton($ip);
 		if ($ip===false) { return false; }
 
-		list($net,$maskbits) = explode('/',"$cidr");
+		list($net,$maskbits) = explode('/',"$cidr/");
 		$net = inet_pton($net);
 		if ($net===false) { return false; }
 
 		$binaryip = self::InetToBits($ip);
 		$binarynet = self::InetToBits($net);
+		if ($binarynet===false) {
+			return false;
+		}
 
 		$ip_net_bits = substr($binaryip,0,$maskbits);
 		$net_bits = substr($binarynet,0,$maskbits);
@@ -122,7 +128,10 @@ class IP {
 	// converts inet_pton output to string with bits
 	private static function InetToBits($inet)
 	{
-		$unpacked = unpack('A16', $inet);
+		$unpacked = @unpack('A16', $inet);
+		if ($unpacked===false) {
+			return false;
+		}
 		$unpacked = str_split($unpacked[1]);
 		$binaryip = '';
 		foreach ($unpacked as $char) {
