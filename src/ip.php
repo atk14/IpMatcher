@@ -119,8 +119,8 @@ class IP {
 			return false;
 		}
 
-		$ip_net_bits = substr($binaryip,0,$maskbits);
-		$net_bits = substr($binarynet,0,$maskbits);
+		$ip_net_bits = substr($binaryip,0,(int)$maskbits);
+		$net_bits = substr($binarynet,0,(int)$maskbits);
 
 		return ($ip_net_bits==$net_bits);
 	}
