@@ -1,5 +1,5 @@
 <?php
-class tc_ip extends tc_base {
+class TcIp extends TcBase {
 
 	function test_ipv6() {
 		$tested_subnets = array(
