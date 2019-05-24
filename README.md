@@ -30,5 +30,5 @@ Just use the Composer:
 
 ```
 $ cd path/to/your/atk14/project/
-$ php composer.phar require atk14/ip-matcher dev-master
+$ composer require atk14/ip-matcher
 ```
