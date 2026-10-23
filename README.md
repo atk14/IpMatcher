@@ -1,6 +1,8 @@
 IpMatcher
 =========
 
+[![Tests](https://github.com/atk14/IpMatcher/actions/workflows/tests.yml/badge.svg)](https://github.com/atk14/IpMatcher/actions/workflows/tests.yml)
+
 Small class for comparing IP addresses.
 One address can be compared with a single IP address or array of IPs or subnets.
 Works with both IPv4 and IPv6 formats.
