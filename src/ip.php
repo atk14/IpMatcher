@@ -110,14 +110,15 @@ class IP {
 		if ($ip===false || strlen($ip)!==16) { return false; }
 
 		list($net,$maskbits) = explode('/',"$cidr/");
+		$maskbits = $maskbits === '' ? 128 : (int)$maskbits;
 		$net = inet_pton($net);
 		if ($net===false || strlen($net)!==16) { return false; }
 
 		$binaryip = self::InetToBits($ip);
 		$binarynet = self::InetToBits($net);
 
-		$ip_net_bits = substr($binaryip,0,(int)$maskbits);
-		$net_bits = substr($binarynet,0,(int)$maskbits);
+		$ip_net_bits = substr($binaryip,0,$maskbits);
+		$net_bits = substr($binarynet,0,$maskbits);
 
 		return ($ip_net_bits==$net_bits);
 	}

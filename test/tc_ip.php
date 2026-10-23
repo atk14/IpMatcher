@@ -54,6 +54,32 @@ class TcIp extends TcBase {
 				"cidr" => "192.168.2.0/24",
 				"expected_result" => false,
 			),
+			# cidr without a mask must be treated as an exact /128 match, not /0 (match-all)
+			array(
+				"ip" => "2a01:4f8:c014:7ccf::1",
+				"cidr" => "::1",
+				"expected_result" => false,
+			),
+			array(
+				"ip" => "::1",
+				"cidr" => "::1",
+				"expected_result" => true,
+			),
+			array(
+				"ip" => "::1",
+				"cidr" => "::1/128",
+				"expected_result" => true,
+			),
+			array(
+				"ip" => "21DA:00D3:0000:2F3B:02AC:00FF:FE28:9C5A",
+				"cidr" => "21DA:00D3:0000:2F3B:02AC:00FF:FE28:9C5A",
+				"expected_result" => true,
+			),
+			array(
+				"ip" => "21DA:00D3:0000:2F3B:02AC:00FF:FE28:9C5A",
+				"cidr" => "21DA:00D3:0000:2F3B:02AC:00FF:FE28:9C5B",
+				"expected_result" => false,
+			),
 		);
 
 		foreach($tested_subnets as $idx => $subnet) {
