@@ -22,6 +22,12 @@ Check an IP matches at least one of addresses/subnets specified in an array
 IP::Match("127.0.0.1", array("127.0.0.2", "127.0.0.1/24"));
 ```
 
+IPv6 addresses and subnets are supported as well
+```php
+IP::Match("::1", "::1");
+IP::Match("21DA:00D3:0000:2F3B:02AC:00FF:FE28:9C5A", "21DA:00D3:0000:2F3B::/64");
+```
+
 
 Installation
 ------------
