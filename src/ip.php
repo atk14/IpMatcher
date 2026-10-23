@@ -107,17 +107,14 @@ class IP {
 			return false;
 		}
 		$ip = inet_pton($ip);
-		if ($ip===false) { return false; }
+		if ($ip===false || strlen($ip)!==16) { return false; }
 
 		list($net,$maskbits) = explode('/',"$cidr/");
 		$net = inet_pton($net);
-		if ($net===false) { return false; }
+		if ($net===false || strlen($net)!==16) { return false; }
 
 		$binaryip = self::InetToBits($ip);
 		$binarynet = self::InetToBits($net);
-		if ($binarynet===false) {
-			return false;
-		}
 
 		$ip_net_bits = substr($binaryip,0,(int)$maskbits);
 		$net_bits = substr($binarynet,0,(int)$maskbits);
@@ -128,11 +125,7 @@ class IP {
 	// converts inet_pton output to string with bits
 	private static function InetToBits($inet)
 	{
-		$unpacked = @unpack('A16', $inet);
-		if ($unpacked===false) {
-			return false;
-		}
-		$unpacked = str_split($unpacked[1]);
+		$unpacked = str_split($inet);
 		$binaryip = '';
 		foreach ($unpacked as $char) {
 			$binaryip .= str_pad(decbin(ord($char)), 8, '0', STR_PAD_LEFT);
